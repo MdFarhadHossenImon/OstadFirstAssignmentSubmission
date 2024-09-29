@@ -1,0 +1,26 @@
+import 'dart:math';
+import 'dart:io';
+int minBulbs(int k) {
+  int low = k, high = 2 * k;
+  while (low < high) {
+    int mid = (low + high) ~/ 2;
+    int onBulbs = mid - sqrt(mid).toInt();
+    if (onBulbs < k) {
+      low = mid + 1;
+    } else {
+      high = mid;
+    }
+  }
+  return low;
+}
+void main() {
+  int t = int.parse(stdin.readLineSync()!);
+  List<int> results = [];
+  for (int i = 0; i < t; i++) {
+    int k = int.parse(stdin.readLineSync()!);
+    results.add(minBulbs(k));
+  }
+  for (var result in results) {
+    print(result);
+  }
+}
